@@ -3,7 +3,7 @@ import React from 'react'
 export default function Register() {
   return (
     <div>
-        <div className="form-container m-20 h-[80vh] bg-orange-400">
+        <div className="form-container m-20 h-[80vh] bg-blue-400">
             <div className="split">
             <p className='text-6l'>Register</p>
             <form action="" method="post">
