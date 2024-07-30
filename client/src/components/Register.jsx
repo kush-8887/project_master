@@ -68,6 +68,15 @@ export default function Register() {
 
   return (
     <div>
+
+        <div className="form-container m-20 h-[80vh] bg-blue-400">
+            <div className="split">
+            <p className='text-6l'>Register</p>
+            <form action="" method="post">
+                <label htmlFor="name">Name: </label>
+                <input type="text" name="name" id="name" className='p-2 text-'/>
+            </form>
+
       <div className="absolute top-0 bg-bg-purple w-[100vw] h-[100vh]"></div>
       <div className="form-container m-20 bg-bg-black rounded-lg drop-shadow-lg">
         <div className="split p-20">
@@ -124,6 +133,7 @@ export default function Register() {
                 />
                 {errors.phone && <span className="text-red-500">{errors.phone}</span>}
               </div>
+
             </div>
 
             {/* Right form */}
