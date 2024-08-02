@@ -67,18 +67,9 @@ export default function Register() {
   };
 
   return (
-    <div>
-
-        <div className="form-container m-20 h-[80vh] bg-blue-400">
-            <div className="split">
-            <p className='text-6l'>Register</p>
-            <form action="" method="post">
-                <label htmlFor="name">Name: </label>
-                <input type="text" name="name" id="name" className='p-2 text-'/>
-            </form>
-
-      <div className="absolute top-0 bg-bg-purple w-[100vw] h-[100vh]"></div>
-      <div className="form-container m-20 bg-bg-black rounded-lg drop-shadow-lg">
+    <div className="relative">
+      <div className="absolute top-0 bg-purple w-[100vw] h-[100vh]"></div>
+      <div className="form-container m-20 bg-black rounded-lg drop-shadow-lg relative z-10">
         <div className="split p-20">
           <p className='text-4xl text-white'>Register</p>
           <form onSubmit={handleSubmit} className='flex flex-row'>
@@ -133,7 +124,6 @@ export default function Register() {
                 />
                 {errors.phone && <span className="text-red-500">{errors.phone}</span>}
               </div>
-
             </div>
 
             {/* Right form */}
@@ -162,11 +152,10 @@ export default function Register() {
                 />
                 {errors.pass && <span className="text-red-500">{errors.pass}</span>}
               </div>
-            <div className="form-item-cont flex flex-col flex-wrap w-[80%] my-4">
-              <button type="submit" className="bg-btn-color text-white p-2 rounded mt-5">Register</button>
+              <div className="form-item-cont flex flex-col flex-wrap w-[80%] my-4">
+                <button type="submit" className="bg-btn-color text-white p-2 rounded mt-5">Register</button>
+              </div>
             </div>
-            </div>
-
           </form>
         </div>
       </div>
