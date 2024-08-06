@@ -7,9 +7,10 @@ export default {
   theme: {
     extend: {
       colors : {
-        'bg-black' : '#171717',
-        'bg-purple' : '#6e29ff',
-        'btn-color' : '#148FFF'
+        'navy' : '#1D267D',
+        'dark-navy' : '#0C134F',
+        'purple' : '#5C469C',
+        'pink' : '#D4ADFC'
       }
     },
   },

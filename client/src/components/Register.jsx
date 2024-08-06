@@ -1,161 +1,196 @@
 import React, { useState } from 'react';
+import Navbar from './utils/Navbar';
+
+import picture from '../assets/imgs/login/login.png';
+import hidden from '../assets/svg/utils/eye-password-hide-svgrepo-com.svg';
+import show from '../assets/svg/utils/eye-password-show-svgrepo-com.svg';
 
 export default function Register() {
-  const [form, setForm] = useState({
-    name: '',
-    lastname: '',
-    company: '',
-    phone: '',
-    email: '',
-    pass: ''
-  });
-
+  const [name, setName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [companyName, setCompanyName] = useState('');
+  const [phone, setPhone] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
   const [errors, setErrors] = useState({});
+  const [passwordState, setPasswordState] = useState('password');
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setForm({ ...form, [name]: value });
-  };
-
-  const validate = () => {
-    const errors = {};
-
-    if (!form.name.trim()) {
-      errors.name = 'Name is required';
-    }
-
-    if (!form.lastname.trim()) {
-      errors.lastname = 'Last Name is required';
-    }
-
-    if (!form.company.trim()) {
-      errors.company = 'Company Name is required';
-    }
-
-    const phonePattern = /^[0-9\b]+$/;
-    if (!form.phone.trim()) {
-      errors.phone = 'Phone Number is required';
-    } else if (!phonePattern.test(form.phone)) {
-      errors.phone = 'Phone Number must be numeric';
-    }
-
-    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!form.email.trim()) {
-      errors.email = 'Email is required';
-    } else if (!emailPattern.test(form.email)) {
-      errors.email = 'Email is invalid';
-    }
-
-    if (!form.pass.trim()) {
-      errors.pass = 'Password is required';
-    } else if (form.pass.length < 6) {
-      errors.pass = 'Password must be at least 6 characters';
-    }
-
-    return errors;
-  };
+  const validateEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  const validatePhone = (phone) => /^[0-9]{10}$/.test(phone);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const validationErrors = validate();
-    setErrors(validationErrors);
+    let valid = true;
+    let newErrors = {};
 
-    if (Object.keys(validationErrors).length === 0) {
-      // Form is valid, submit the form or perform other actions
-      console.log('Form submitted successfully:', form);
+    if (!name) {
+      newErrors.name = 'Name is required';
+      valid = false;
+    }
+    if (!lastName) {
+      newErrors.lastName = 'Last name is required';
+      valid = false;
+    }
+    if (!companyName) {
+      newErrors.companyName = 'Company name is required';
+      valid = false;
+    }
+    if (!phone) {
+      newErrors.phone = 'Phone number is required';
+      valid = false;
+    } else if (!validatePhone(phone)) {
+      newErrors.phone = 'Invalid phone number format';
+      valid = false;
+    }
+    if (!email) {
+      newErrors.email = 'Email is required';
+      valid = false;
+    } else if (!validateEmail(email)) {
+      newErrors.email = 'Invalid email format';
+      valid = false;
+    }
+    if (!password) {
+      newErrors.password = 'Password is required';
+      valid = false;
+    }
+    if (!confirmPassword) {
+      newErrors.confirmPassword = 'Confirm Password is required';
+      valid = false;
+    } else if (password !== confirmPassword) {
+      newErrors.confirmPassword = 'Passwords do not match';
+      valid = false;
+    }
+
+    setErrors(newErrors);
+
+    if (valid) {
+      // Proceed with form submission
+      console.log('Form submitted:', { name, lastName, companyName, phone, email, password });
     }
   };
 
+  const changeView = () => {
+    setPasswordState(passwordState === 'password' ? 'text' : 'password');
+  };
+
   return (
-    <div className="relative">
-      <div className="absolute top-0 bg-purple w-[100vw] h-[100vh]"></div>
-      <div className="form-container m-20 bg-black rounded-lg drop-shadow-lg relative z-10">
-        <div className="split p-20">
-          <p className='text-4xl text-white'>Register</p>
-          <form onSubmit={handleSubmit} className='flex flex-row'>
+    <div className="bg-dark-navy min-h-screen flex flex-col">
+      <Navbar />
+      <div className="flex flex-1 justify-between items-center">
+        <div className="w-[50%] flex justify-center">
+          <img src={picture} alt="Description" className="max-w-full h-auto" />
+        </div>
 
-            {/* Left form */}
-            <div className="form-left w-[50%]">
-              <div className="form-item-cont flex flex-col my-10">
-                <input 
-                  type="text" 
-                  name="name" 
-                  id="name" 
-                  className='p-2 w-[80%] rounded' 
-                  placeholder='Name'
-                  value={form.name}
-                  onChange={handleChange}
-                />
-                {errors.name && <span className="text-red-500">{errors.name}</span>}
-              </div>
-              <div className="form-item-cont flex flex-col my-10">
-                <input 
-                  type="text" 
-                  name="lastname" 
-                  id="lastname" 
-                  className='p-2 w-[80%] rounded' 
-                  placeholder='Last Name'
-                  value={form.lastname}
-                  onChange={handleChange}
-                />
-                {errors.lastname && <span className="text-red-500">{errors.lastname}</span>}
-              </div>
-              <div className="form-item-cont flex flex-col my-10">
-                <input 
-                  type="text" 
-                  name="company" 
-                  id="company" 
-                  className='p-2 w-[80%] rounded' 
-                  placeholder='Company Name'
-                  value={form.company}
-                  onChange={handleChange}
-                />
-                {errors.company && <span className="text-red-500">{errors.company}</span>}
-              </div>
-              <div className="form-item-cont flex flex-col my-10">
-                <input 
-                  type="text" 
-                  name="phone" 
-                  id="phone" 
-                  className='p-2 w-[80%] rounded' 
-                  placeholder='Phone Number'
-                  value={form.phone}
-                  onChange={handleChange}
-                />
-                {errors.phone && <span className="text-red-500">{errors.phone}</span>}
-              </div>
+        <div className="w-[50%] flex flex-col items-center bg-white p-10 rounded-lg shadow-lg m-10">
+          <h1 className="text-2xl font-bold mb-6">Register</h1>
+
+          <form onSubmit={handleSubmit} className="w-full">
+            <div className="w-full mb-4">
+              <label htmlFor="name" className="block text-lg font-bold mb-2">Name</label>
+              <input
+                type="text"
+                id="name"
+                className="w-full p-2 rounded-xl border-2 border-slate-950"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+              />
+              {errors.name && <p className="text-red-500">{errors.name}</p>}
             </div>
 
-            {/* Right form */}
-            <div className="form-right w-[50%] flex flex-col">
-              <div className="form-item-cont flex flex-col my-10 flex-wrap">
-                <input 
-                  type="email" 
-                  name="email" 
-                  id="email" 
-                  className='p-2 w-[80%] rounded' 
-                  placeholder='Email'
-                  value={form.email}
-                  onChange={handleChange}
-                />
-                {errors.email && <span className="text-red-500">{errors.email}</span>}
-              </div>
-              <div className="form-item-cont flex flex-col flex-wrap">
-                <input 
-                  type="password" 
-                  name="pass" 
-                  id="pass" 
-                  className='p-2 w-[80%] rounded' 
-                  placeholder='Password'
-                  value={form.pass}
-                  onChange={handleChange}
-                />
-                {errors.pass && <span className="text-red-500">{errors.pass}</span>}
-              </div>
-              <div className="form-item-cont flex flex-col flex-wrap w-[80%] my-4">
-                <button type="submit" className="bg-btn-color text-white p-2 rounded mt-5">Register</button>
-              </div>
+            <div className="w-full mb-4">
+              <label htmlFor="lastName" className="block text-lg font-bold mb-2">Last Name</label>
+              <input
+                type="text"
+                id="lastName"
+                className="w-full p-2 rounded-xl border-2 border-slate-950"
+                value={lastName}
+                onChange={(e) => setLastName(e.target.value)}
+              />
+              {errors.lastName && <p className="text-red-500">{errors.lastName}</p>}
             </div>
+
+            <div className="w-full mb-4">
+              <label htmlFor="companyName" className="block text-lg font-bold mb-2">Company Name</label>
+              <input
+                type="text"
+                id="companyName"
+                className="w-full p-2 rounded-xl border-2 border-slate-950"
+                value={companyName}
+                onChange={(e) => setCompanyName(e.target.value)}
+              />
+              {errors.companyName && <p className="text-red-500">{errors.companyName}</p>}
+            </div>
+
+            <div className="w-full mb-4">
+              <label htmlFor="phone" className="block text-lg font-bold mb-2">Phone Number</label>
+              <input
+                type="text"
+                id="phone"
+                className="w-full p-2 rounded-xl border-2 border-slate-950"
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
+              />
+              {errors.phone && <p className="text-red-500">{errors.phone}</p>}
+            </div>
+
+            <div className="w-full mb-4">
+              <label htmlFor="email" className="block text-lg font-bold mb-2">Email</label>
+              <input
+                type="email"
+                id="email"
+                className="w-full p-2 rounded-xl border-2 border-slate-950"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+              {errors.email && <p className="text-red-500">{errors.email}</p>}
+            </div>
+
+            <div className="w-full mb-6">
+              <label htmlFor="password" className="block text-lg font-bold mb-2">Password</label>
+              <div className="relative">
+                <input
+                  type={passwordState}
+                  id="password"
+                  className="w-full p-2 rounded-xl border-2 border-slate-950"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+                <img
+                  src={passwordState === 'password' ? hidden : show}
+                  onClick={changeView}
+                  alt="Toggle Password Visibility"
+                  className="absolute top-1/2 right-3 transform -translate-y-1/2 cursor-pointer h-[25px]"
+                />
+              </div>
+              {errors.password && <p className="text-red-500">{errors.password}</p>}
+            </div>
+
+            <div className="w-full mb-6">
+              <label htmlFor="confirmPassword" className="block text-lg font-bold mb-2">Confirm Password</label>
+              <div className="relative">
+                <input
+                  type={passwordState}
+                  id="confirmPassword"
+                  className="w-full p-2 rounded-xl border-2 border-slate-950"
+                  value={confirmPassword}
+                  onChange={(e) => setConfirmPassword(e.target.value)}
+                />
+                <img
+                  src={passwordState === 'password' ? hidden : show}
+                  onClick={changeView}
+                  alt="Toggle Password Visibility"
+                  className="absolute top-1/2 right-3 transform -translate-y-1/2 cursor-pointer h-[25px]"
+                />
+              </div>
+              {errors.confirmPassword && <p className="text-red-500">{errors.confirmPassword}</p>}
+            </div>
+
+            <button type="submit" className="bg-black text-white px-4 py-2 rounded-lg font-bold">
+              Submit
+            </button>
+            <br /><br />
+            <a className='hover:cursor-pointer font-bold' href='/login'> Already have an account? Login</a>
           </form>
         </div>
       </div>

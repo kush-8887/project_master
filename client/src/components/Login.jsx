@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
-import picture from './resources/image.png';
-import hidden from '../assets/svg/eye-password-hide-svgrepo-com.svg';
-import show from '../assets/svg/eye-password-show-svgrepo-com.svg';
+import picture from '../assets/imgs/login/login.png';
+import hidden from '../assets/svg/utils/eye-password-hide-svgrepo-com.svg';
+import show from '../assets/svg/utils/eye-password-show-svgrepo-com.svg';
+
+//Navbar
+import Navbar from './utils/Navbar';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -54,16 +57,8 @@ const Login = () => {
   };
 
   return (
-    <div className="bg-blue-950 min-h-screen flex flex-col">
-      <nav className="flex justify-between items-center h-20 bg-blue-900 px-5">
-        <div className="text-5xl text-white">Salesalizer</div>
-        <ul className="flex space-x-4 text-white">
-          <li className="p-1">Home</li>
-          <li className="p-1">About</li>
-          <li className="p-1">Services</li>
-        </ul>
-      </nav>
-
+    <div className="bg-dark-navy min-h-screen flex flex-col">
+      <Navbar />
       <div className="flex flex-1 justify-between items-center mx-[7.25rem] my-[4.5rem]">
         <div className="w-[70%] flex justify-center">
           <img src={picture} alt="Description" className="max-w-full h-auto" />
@@ -97,14 +92,14 @@ const Login = () => {
                   onClick={changeView}
                   id="hidden"
                   alt=""
-                  className={`relative h-7 top-[9px] left-[255px] cursor-pointer ${passwordState === 'text' ? 'hidden' : 'block'}`}
+                  className={`relative h-7 top-[8px] left-[270px] cursor-pointer ${passwordState === 'text' ? 'hidden' : 'block'}`}
                 />
                 <img
                   src={show}
                   onClick={changeView}
                   id="show"
                   alt=""
-                  className={`relative h-7 top-[9px] left-[255px] cursor-pointer ${passwordState === 'text' ? 'block' : 'hidden'}`}
+                  className={`relative h-7 top-[8px] left-[270px] cursor-pointer ${passwordState === 'text' ? 'block' : 'hidden'}`}
                 />
               </div>
               <input
@@ -120,6 +115,8 @@ const Login = () => {
             <button type="submit" className="bg-black text-white px-4 py-2 rounded-lg font-bold">
               Submit
             </button>
+            <br /> <br />
+            <a href="/register" className='my-5 font-bold'>New customer? Register</a>
           </form>
         </div>
       </div>
