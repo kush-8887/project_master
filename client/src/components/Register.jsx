@@ -6,10 +6,8 @@ import hidden from '../assets/svg/utils/eye-password-hide-svgrepo-com.svg';
 import show from '../assets/svg/utils/eye-password-show-svgrepo-com.svg';
 
 export default function Register() {
-  const [name, setName] = useState('');
-  const [lastName, setLastName] = useState('');
+  const [fullName, setFullName] = useState('');
   const [companyName, setCompanyName] = useState('');
-  const [phone, setPhone] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -17,30 +15,18 @@ export default function Register() {
   const [passwordState, setPasswordState] = useState('password');
 
   const validateEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-  const validatePhone = (phone) => /^[0-9]{10}$/.test(phone);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     let valid = true;
     let newErrors = {};
 
-    if (!name) {
-      newErrors.name = 'Name is required';
-      valid = false;
-    }
-    if (!lastName) {
-      newErrors.lastName = 'Last name is required';
+    if (!fullName) {
+      newErrors.fullName = 'Full Name is required';
       valid = false;
     }
     if (!companyName) {
-      newErrors.companyName = 'Company name is required';
-      valid = false;
-    }
-    if (!phone) {
-      newErrors.phone = 'Phone number is required';
-      valid = false;
-    } else if (!validatePhone(phone)) {
-      newErrors.phone = 'Invalid phone number format';
+      newErrors.companyName = 'Company Name is required';
       valid = false;
     }
     if (!email) {
@@ -66,7 +52,7 @@ export default function Register() {
 
     if (valid) {
       // Proceed with form submission
-      console.log('Form submitted:', { name, lastName, companyName, phone, email, password });
+      console.log('Form submitted:', { fullName, companyName, email, password });
     }
   };
 
@@ -75,39 +61,29 @@ export default function Register() {
   };
 
   return (
-    <div className="bg-dark-navy min-h-screen flex flex-col">
+    <div className="bg-navy min-h-screen flex flex-col">
       <Navbar />
       <div className="flex flex-1 justify-between items-center">
         <div className="w-[50%] flex justify-center">
           <img src={picture} alt="Description" className="max-w-full h-auto" />
         </div>
 
-        <div className="w-[50%] flex flex-col items-center bg-white p-10 rounded-lg shadow-lg m-10">
+        <div className="w-[50%]">
+
+          <div className='flex flex-col items-center bg-white p-10 rounded-lg shadow-lg m-[100px] mt-[50px]'>
           <h1 className="text-2xl font-bold mb-6">Register</h1>
 
           <form onSubmit={handleSubmit} className="w-full">
             <div className="w-full mb-4">
-              <label htmlFor="name" className="block text-lg font-bold mb-2">Name</label>
+              <label htmlFor="fullName" className="block text-lg font-bold mb-2">Full Name</label>
               <input
                 type="text"
-                id="name"
+                id="fullName"
                 className="w-full p-2 rounded-xl border-2 border-slate-950"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
+                value={fullName}
+                onChange={(e) => setFullName(e.target.value)}
               />
-              {errors.name && <p className="text-red-500">{errors.name}</p>}
-            </div>
-
-            <div className="w-full mb-4">
-              <label htmlFor="lastName" className="block text-lg font-bold mb-2">Last Name</label>
-              <input
-                type="text"
-                id="lastName"
-                className="w-full p-2 rounded-xl border-2 border-slate-950"
-                value={lastName}
-                onChange={(e) => setLastName(e.target.value)}
-              />
-              {errors.lastName && <p className="text-red-500">{errors.lastName}</p>}
+              {errors.fullName && <p className="text-red-500">{errors.fullName}</p>}
             </div>
 
             <div className="w-full mb-4">
@@ -120,18 +96,6 @@ export default function Register() {
                 onChange={(e) => setCompanyName(e.target.value)}
               />
               {errors.companyName && <p className="text-red-500">{errors.companyName}</p>}
-            </div>
-
-            <div className="w-full mb-4">
-              <label htmlFor="phone" className="block text-lg font-bold mb-2">Phone Number</label>
-              <input
-                type="text"
-                id="phone"
-                className="w-full p-2 rounded-xl border-2 border-slate-950"
-                value={phone}
-                onChange={(e) => setPhone(e.target.value)}
-              />
-              {errors.phone && <p className="text-red-500">{errors.phone}</p>}
             </div>
 
             <div className="w-full mb-4">
@@ -192,6 +156,7 @@ export default function Register() {
             <br /><br />
             <a className='hover:cursor-pointer font-bold' href='/login'> Already have an account? Login</a>
           </form>
+          </div>
         </div>
       </div>
     </div>

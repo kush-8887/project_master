@@ -57,7 +57,7 @@ const Login = () => {
   };
 
   return (
-    <div className="bg-dark-navy min-h-screen flex flex-col">
+    <div className="bg-navy min-h-screen flex flex-col">
       <Navbar />
       <div className="flex flex-1 justify-between items-center mx-[7.25rem] my-[4.5rem]">
         <div className="w-[70%] flex justify-center">
