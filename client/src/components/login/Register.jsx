@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
-import Navbar from './utils/Navbar';
+import { useParams } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
+import Navbar from '../utils/Navbar';
 
-import picture from '../assets/imgs/login/login.png';
-import hidden from '../assets/svg/utils/eye-password-hide-svgrepo-com.svg';
-import show from '../assets/svg/utils/eye-password-show-svgrepo-com.svg';
+import picture from '../../assets/imgs/login/login.png';
+import hidden from '../../assets/svg/utils/eye-password-hide-svgrepo-com.svg';
+import show from '../../assets/svg/utils/eye-password-show-svgrepo-com.svg';
 
 export default function Register() {
   const [fullName, setFullName] = useState('');
@@ -14,9 +16,11 @@ export default function Register() {
   const [errors, setErrors] = useState({});
   const [passwordState, setPasswordState] = useState('password');
 
+  const navigate = useNavigate();
+
   const validateEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     let valid = true;
     let newErrors = {};
@@ -53,6 +57,23 @@ export default function Register() {
     if (valid) {
       // Proceed with form submission
       console.log('Form submitted:', { fullName, companyName, email, password });
+      try {
+        const response = await fetch(`http://localhost:8000/signup`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({fullName,companyName, email,password }),
+        });
+
+        let statusCode = response.status;     
+        console.log(statusCode);
+           
+        navigate("/email-success", { state: { statusCode :statusCode } });
+    
+      } catch (error) {
+        console.error('Error updating email:', error);
+      }
     }
   };
 
@@ -61,7 +82,7 @@ export default function Register() {
   };
 
   return (
-    <div className="bg-navy min-h-screen flex flex-col">
+    <div className="bg-b-grey min-h-screen flex flex-col">
       <Navbar />
       <div className="flex flex-1 justify-between items-center">
         <div className="w-[50%] flex justify-center">
@@ -70,7 +91,7 @@ export default function Register() {
 
         <div className="w-[50%]">
 
-          <div className='flex flex-col items-center bg-white p-10 rounded-lg shadow-lg m-[100px] mt-[50px]'>
+          <div className='flex flex-col items-center bg-c-grey text-white p-10 rounded-lg shadow-lg m-[100px] mt-[50px]'>
           <h1 className="text-2xl font-bold mb-6">Register</h1>
 
           <form onSubmit={handleSubmit} className="w-full">
@@ -79,7 +100,7 @@ export default function Register() {
               <input
                 type="text"
                 id="fullName"
-                className="w-full p-2 rounded-xl border-2 border-slate-950"
+                className="w-full p-2 rounded-xl border-2 text-black"
                 value={fullName}
                 onChange={(e) => setFullName(e.target.value)}
               />
@@ -91,7 +112,7 @@ export default function Register() {
               <input
                 type="text"
                 id="companyName"
-                className="w-full p-2 rounded-xl border-2 border-slate-950"
+                className="w-full p-2 rounded-xl border-2 text-black"
                 value={companyName}
                 onChange={(e) => setCompanyName(e.target.value)}
               />
@@ -103,7 +124,7 @@ export default function Register() {
               <input
                 type="email"
                 id="email"
-                className="w-full p-2 rounded-xl border-2 border-slate-950"
+                className="w-full p-2 rounded-xl border-2 text-black"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
               />
@@ -116,7 +137,7 @@ export default function Register() {
                 <input
                   type={passwordState}
                   id="password"
-                  className="w-full p-2 rounded-xl border-2 border-slate-950"
+                  className="w-full p-2 rounded-xl border-2 text-black"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                 />
@@ -136,7 +157,7 @@ export default function Register() {
                 <input
                   type={passwordState}
                   id="confirmPassword"
-                  className="w-full p-2 rounded-xl border-2 border-slate-950"
+                  className="w-full p-2 rounded-xl border-2 text-black"
                   value={confirmPassword}
                   onChange={(e) => setConfirmPassword(e.target.value)}
                 />
@@ -150,11 +171,11 @@ export default function Register() {
               {errors.confirmPassword && <p className="text-red-500">{errors.confirmPassword}</p>}
             </div>
 
-            <button type="submit" className="bg-black text-white px-4 py-2 rounded-lg font-bold">
+            <button type="submit" className="bg-black text-white transition-colors hover:bg-selected-purple hover:text-black px-4 py-2 rounded-lg font-bold">
               Submit
             </button>
             <br /><br />
-            <a className='hover:cursor-pointer font-bold' href='/login'> Already have an account? Login</a>
+            <a className='hover:cursor-pointer font-bold transition-colors hover:text-selected-purple' href='/login'> Already have an account? Login</a>
           </form>
           </div>
         </div>

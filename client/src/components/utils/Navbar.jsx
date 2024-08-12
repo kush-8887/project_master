@@ -4,7 +4,7 @@ import Logo from '../../assets/svg/logo/full-logo.svg'
 
 export default function Navbar() {
   return (
-    <div className='bg-dark-navy py-5 px-8 flex items-center justify-between'>
+    <div className='bg-b-grey py-5 px-8 flex items-center justify-between'>
       <div className="logo-container">
         <img src={Logo} alt="logo" className='h-12' />
       </div>
