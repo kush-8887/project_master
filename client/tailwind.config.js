@@ -7,12 +7,25 @@ export default {
   theme: {
     extend: {
       colors : {
-        'navy' : '#1D267D',
-        'dark-navy' : '#0C134F',
-        'purple' : '#5C469C',
+        'b-grey' : '#242529',
+        'c-grey' : '#37373f',
+        'selected-purple' : '#a6abff',
         'pink' : '#D4ADFC'
+      },
+      borderRadius: {
+        'custom': '30% 70% 68% 32% / 61% 43% 57% 39%',
       }
     },
   },
-  plugins: [],
+  plugins: [
+    function({ addUtilities }) {
+      const newUtilities = {
+        '.rounded-custom': {
+          borderRadius: '30% 70% 68% 32% / 61% 43% 57% 39%',
+        },
+      }
+
+      addUtilities(newUtilities, ['responsive', 'hover']);
+    }
+  ],
 }
