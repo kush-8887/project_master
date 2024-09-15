@@ -16,8 +16,13 @@ import Reset from './components/login/Reset.jsx';
 import Error from './components/utils/Error.jsx'
 import Home from './components/Home.jsx'
 import Forget from './components/login/Forget.jsx';
+import AfterLogin from './components/login/AfterLogin.jsx';
 
 const router = createBrowserRouter([
+  {
+    path : "/error",
+    element : <Error />
+  },
   {
     path : "/",
     element : <Home /> ,
@@ -46,6 +51,9 @@ const router = createBrowserRouter([
   },{
     path : "/pass-success",
     element : <PassSuccess />
+  },{
+    path : "/login-success",
+    element : <AfterLogin />
   }
 ]);
 

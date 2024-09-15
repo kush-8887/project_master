@@ -42,15 +42,19 @@ router.post("/signup", async (req, res) => {
 
 router.post("/login", async (req, res) => {
   const { email, password } = req.body;
-  console.log(email, password);
+  // console.log(email, password , "login.js log");
 
   try {
     let user = await User.findOne({ email });
+    // console.log(user , "login.js log");
+    
     if (!user) {
       return res.status(400).json({ msg: "Invalid credentials" });
     }
 
     if (!user.isVerified) {
+      console.log("user not verified!");
+      
       return res
         .status(403)
         .json({ msg: "Please verify your email to login." });
@@ -66,8 +70,8 @@ router.post("/login", async (req, res) => {
 
     res.cookie("token", token, {
       httpOnly: true, // Cannot be accessed via JavaScript
-      secure: true, // Only sent over HTTPS
-      sameSite: "strict", // Prevents CSRF
+      secure: false, // Only sent over HTTPS
+      sameSite: "lax", // Prevents CSRF
     });
     res.status(200).json({ msg: "Logged in successfully" });
   } catch (err) {
