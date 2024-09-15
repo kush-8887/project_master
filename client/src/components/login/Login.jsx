@@ -53,13 +53,19 @@ const Login = () => {
             'Content-Type': 'application/json',
           },
           body: JSON.stringify({ email ,password }),
+          credentials: 'include' //very important for sending cookies
         });
 
         let statusCode = response.status;        
-        console.log(statusCode);
+        // console.log(statusCode);
         
         //todo add dashboard here
-        // navigate("/pass-success", { state: { statusCode :statusCode } });
+        if(statusCode === 200){
+          navigate("/login-success", { state: { statusCode :statusCode } });
+        }
+        else{
+          navigate("/error") //change this to appropriate response reccived from the server!
+        }
     
       } catch (error) {
         console.error('Error updating password:', error);
