@@ -30,9 +30,9 @@ app.use(cookieParser());
 app.use(bodyParser.json());
 
 //Mongo Connection
-
+const mongoRoute = process.env.MONGOURL;
 mongoose
-  .connect("mongodb://0.0.0.0:27017/auth-system")
+  .connect(`${mongoRoute}`)
   .then(() => console.log("MongoDB connected"))
   .catch((err) => console.log(err));
 
