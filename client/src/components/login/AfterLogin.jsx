@@ -1,5 +1,6 @@
 import React from 'react'
 import useAuth from '../../hooks/validation'
+import Fileup from '../dashboard/Fileup';
 
 export default function AfterLogin() {
 
@@ -10,7 +11,8 @@ export default function AfterLogin() {
   }
   return (
     <div>
-      LOGIN SUCCESSFUL
+      <Fileup visibility={true} />
+      LOGIN SUCCESSFUL <br /><br /><br />
     </div>
   )
 }

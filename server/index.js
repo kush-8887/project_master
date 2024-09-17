@@ -11,6 +11,7 @@ require('dotenv').config();
 
 //Routes
 const loginRoutes = require('./routes/login/login');
+const csv_upload = require('./routes/dashboard/csv_upload')
 const { authMiddleware } = require('./middleware/auth');
 
 //PORT 
@@ -37,6 +38,7 @@ mongoose
 
 //Routes
 app.use("/",loginRoutes)
+app.use("/",csv_upload)
 
 // auth route for React
 app.get('/verify', authMiddleware, (req, res) => {
