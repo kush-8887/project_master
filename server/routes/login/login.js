@@ -8,8 +8,6 @@ require('dotenv').config();
 
 router.post("/signup", async (req, res) => {
   const { fullName, companyName, email, password } = req.body;
-  console.log(fullName, companyName, email, password);
-
   try {
     let user = await User.findOne({ email });
     if (user) {
@@ -28,12 +26,7 @@ router.post("/signup", async (req, res) => {
       subject: "Verify your email",
       text: `Click on this link to verify your email: http://localhost:5173/verify/${verificationToken}`,
     });
-
-    console.log("signup");
-    
-
-    res.status(201).json({ msg: "User registered. Please verify your email." });
-    
+    res.status(201).json({ msg: "User registered. Please verify your email." });  
   } catch (err) {
     console.error(err.message);
     res.status(500).send("Server error");
@@ -42,19 +35,12 @@ router.post("/signup", async (req, res) => {
 
 router.post("/login", async (req, res) => {
   const { email, password } = req.body;
-  // console.log(email, password , "login.js log");
-
   try {
     let user = await User.findOne({ email });
-    // console.log(user , "login.js log");
-    
     if (!user) {
       return res.status(400).json({ msg: "Invalid credentials" });
     }
-
     if (!user.isVerified) {
-      console.log("user not verified!");
-      
       return res
         .status(403)
         .json({ msg: "Please verify your email to login." });
@@ -81,25 +67,21 @@ router.post("/login", async (req, res) => {
 });
 
 router.get("/verify/:token", async (req, res) => {
-  console.log(req.params);
-  
   try {
     const user = await User.findOne({ verificationToken: req.params.token });
     if (!user) {
       return res.status(400).json({ msg: "Invalid verification token" });
     }
-
     user.isVerified = true;
     user.verificationToken = undefined;
     await user.save();
-    console.log("EMail verified!");
-    
     /* 
         THIS CODE WORKS , 
         THE SERVER RETURNS 200 BUT 400 IS ALSO RETURNED
         EMAIL GETS VERFIED BUT ERROR PAGE IS RENDERED
-    */
 
+        17/09/24 - this error has been resolved (probably)
+    */
     res.status(200).json({ msg: "Email verified successfully" });
   } catch (err) {
     console.error(err.message);
@@ -125,7 +107,6 @@ router.post("/reset-password", async (req, res) => {
     sendEmail({
       to: email,
       subject: "Password Reset",
-      // text: `Click on this link to reset your password: http://localhost:${PORT}/reset/${resetToken} `,
       text: `Click on this link to reset your password: http://localhost:8000/reset/${resetToken}`,
     });
 
