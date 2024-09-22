@@ -31,10 +31,12 @@ export default function Fileup({ visibility }) {
         credentials: 'include' //very important for sending cookies
       });
 
-      const responseMsg = await response.text();
+      const responseMsg = await response.json();
+      const msg = responseMsg["message"]
+      
       
       if (response.ok) {
-        setResponseMsg(responseMsg)
+        setResponseMsg(msg)
       } else {
         setResponseMsg("Snap! Error occured try uploading again")
       }
