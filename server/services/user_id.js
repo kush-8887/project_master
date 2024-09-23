@@ -4,7 +4,7 @@ async function getUserId(req) {
     try{
         const token = req.cookies.token;
         if (!token) {
-          return cb(new Error("No token found in cookies"));
+          return new Error("No token found in cookies");
         }
       
         const decoded = jwt.verify(token, "your_jwt_secret");

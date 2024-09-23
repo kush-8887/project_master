@@ -11,7 +11,8 @@ require('dotenv').config();
 
 //Routes
 const loginRoutes = require('./routes/login/login');
-const csv_upload = require('./routes/dashboard/csv_upload')
+const csv_upload = require('./routes/dashboard/csv_upload');
+const quantity_data = require('./routes/dashboard/quantity_data');
 const { authMiddleware } = require('./middleware/auth');
 
 //PORT 
@@ -20,9 +21,9 @@ var port = process.env.SERVER_PORT || 9000;
 //Middlewares
 app.use(cors({
   origin: 'http://localhost:5173',
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], 
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
-  credentials: true
+  credentials: true 
 }));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -37,8 +38,9 @@ mongoose
   .catch((err) => console.log(err));
 
 //Routes
-app.use("/",loginRoutes)
-app.use("/",csv_upload)
+app.use("/",loginRoutes);
+app.use("/",csv_upload);
+app.use("/",quantity_data);
 
 // auth route for React
 app.get('/verify', authMiddleware, (req, res) => {

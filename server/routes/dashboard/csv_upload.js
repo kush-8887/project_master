@@ -2,7 +2,6 @@ const express = require("express");
 const router = express.Router();
 const multer = require("multer");
 const fs = require("fs");
-const path = require('path');
 const { authMiddleware } = require("../../middleware/auth"); // Assuming this is correct
 const { getUserId } = require("../../services/user_id");
 const { get_err } = require('../../services/python_err');
@@ -12,7 +11,7 @@ require('dotenv').config();
 
 const storagePath = "./public/uploads/";
 const mongoURL = process.env.MONGOURL;
-const dbName = "test"
+const dbName = process.env.dbName
 
 // Set up multer storage
 const storage = multer.diskStorage({
@@ -52,6 +51,8 @@ router.post("/upload-csv", authMiddleware, upload.single("myfile"), async (req, 
   if (req.file) {
       const userId = await getUserId(req);
       const pythonScriptPath = "./python/status.py"; // Path to your Python script
+
+      console.log(userId,storagePath,mongoURL,dbName)
 
       // Spawn a child process to run the Python script
       const pythonProcess = spawn("python", [pythonScriptPath, userId, storagePath, mongoURL, dbName]);
