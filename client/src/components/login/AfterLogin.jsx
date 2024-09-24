@@ -2,111 +2,14 @@ import React, { useState } from 'react';
 import useAuth from '../../hooks/validation';
 import Fileup from '../dashboard/Fileup';
 import { ResponsivePie } from '@nivo/pie';
+import PieChart from '../dashboard/PieChart';
+import LineGraph from '../dashboard/LineGraph';
+import DashNav from '../dashboard/DashNav';
 
 export default function AfterLogin() {
   const { authenticated } = useAuth();
 
-  const MyResponsivePie = ({ data }) => (
-    <ResponsivePie
-      data={data}
-      margin={{ top: 40, right: 80, bottom: 80, left: 80 }}
-      innerRadius={0.5}
-      padAngle={0.7}
-      cornerRadius={3}
-      activeOuterRadiusOffset={8}
-      borderWidth={1}
-      borderColor={{
-        from: 'color',
-        modifiers: [['darker', 0.2]],
-      }}
-      arcLinkLabelsSkipAngle={10}
-      arcLinkLabelsTextColor="#333333"
-      arcLinkLabelsThickness={2}
-      arcLinkLabelsColor={{ from: 'color' }}
-      arcLabelsSkipAngle={10}
-      arcLabelsTextColor={{
-        from: 'color',
-        modifiers: [['darker', 2]],
-      }}
-      defs={[
-        {
-          id: 'dots',
-          type: 'patternDots',
-          background: 'inherit',
-          color: 'rgba(255, 255, 255, 0.3)',
-          size: 4,
-          padding: 1,
-          stagger: true,
-        },
-        {
-          id: 'lines',
-          type: 'patternLines',
-          background: 'inherit',
-          color: 'rgba(255, 255, 255, 0.3)',
-          rotation: -45,
-          lineWidth: 6,
-          spacing: 10,
-        },
-      ]}
-      fill={[
-        { match: { id: 'modelS' }, id: 'dots' },
-        { match: { id: 'c' }, id: 'dots' },
-        { match: { id: 'go' }, id: 'dots' },
-        { match: { id: 'python' }, id: 'dots' },
-        { match: { id: 'scala' }, id: 'lines' },
-        { match: { id: 'lisp' }, id: 'lines' },
-        { match: { id: 'elixir' }, id: 'lines' },
-        { match: { id: 'javascript' }, id: 'lines' },
-      ]}
-      legends={[
-        {
-          anchor: 'bottom',
-          direction: 'row',
-          justify: false,
-          translateX: 0,
-          translateY: 56,
-          itemsSpacing: 0,
-          itemWidth: 100,
-          itemHeight: 18,
-          itemTextColor: '#999',
-          itemDirection: 'left-to-right',
-          itemOpacity: 1,
-          symbolSize: 18,
-          symbolShape: 'circle',
-          effects: [
-            {
-              on: 'hover',
-              style: {
-                itemTextColor: '#000',
-              },
-            },
-          ],
-        },
-      ]}
-      theme={{
-        fontSize: 14,
-        fontFamily: 'Arial, sans-serif',
-        labels: {
-          text: {
-            fill: '#555555',
-          },
-        },
-        legends: {
-          text: {
-            fontSize: 12,
-            fill: '#999999',
-          },
-        },
-        tooltip: {
-          container: {
-            background: '#333',
-            color: '#fff',
-            fontSize: '12px',
-          },
-        },
-      }}
-    />
-  );
+  
 
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -135,17 +38,19 @@ export default function AfterLogin() {
 
   return (
     <div>
-      <Fileup visibility={true} />
-      LOGIN SUCCESSFUL <br /><br /><br />
-      <div style={{ height: '500px', width: '500px' }}>
-        {data.length > 0 ? (
-          <MyResponsivePie data={data} />
-        ) : (
-          <p>No data available</p>
-        )}
-        <button onClick={fetchData} disabled={loading}>
-          {loading ? 'Fetching...' : 'Fetch Data'}
-        </button>
+      <Fileup visibility={false} />
+      <div className='flex flex-row '>
+      <DashNav />
+      {/* <div className='bg-b-grey w-[80vw] h-[100vh] overflow-scroll scrollbar-hide'> */}
+      <div className='bg-b-grey w-[80vw] h-[100vh] overflow-scroll no-scrollbar'>
+      <div className='w-[80vw] flex flex-row' style={{ scrollbarWidth: 'none', msOverflowStyle: 'none', overflowY: 'scroll' }}>
+        <PieChart link={"http://localhost:8000/getPie/year/2024"} height={"500px"} width={"500px"} />
+        <PieChart link={"http://localhost:8000/getPie/quarter/2024Q1"} height={"500px"} width={"500px"} />
+      </div>
+      <LineGraph link={"http://localhost:8000/getLineGP/year/2023/2024"} height={"500px"} width={"1000px"} xAxisLabel={"Products"} yAxisLabel={"Price"}/> 
+      <LineGraph link={"http://localhost:8000/getLineGP/quarter/2024"} height={"500px"} width={"1000px"} xAxisLabel={"Products"} yAxisLabel={"Price"}/> 
+      <LineGraph link={"http://localhost:8000/getLineGP/month/2024"} height={"500px"} width={"1000px"} xAxisLabel={"Products"} yAxisLabel={"Price"}/> 
+      </div>
       </div>
     </div>
   );

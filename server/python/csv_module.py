@@ -31,7 +31,7 @@ class csv_module:
             df = pd.read_csv(self.csv_file)
 
             # Convert 'date' column to datetime with the correct format
-            df['date'] = pd.to_datetime(df['date'], format='%Y-%m-%d', errors='coerce')
+            df['date'] = pd.to_datetime(df['date'], format='%d-%m-%Y', errors='coerce')
 
             # Add a column for month, quarter, and year
             df['month'] = df['date'].dt.to_period('M').astype(str)  # Convert to string after deriving
