@@ -14,6 +14,9 @@ const loginRoutes = require('./routes/login/login');
 const csv_upload = require('./routes/dashboard/csv_upload');
 const quantity_data = require('./routes/dashboard/quantity_data');
 const price_data = require('./routes/dashboard/price_data');
+const current_data = require('./routes/dashboard/current_data');
+const price_data_pie = require('./routes/dashboard/price_data_pie');
+const quantity_data_line = require('./routes/dashboard/quantity_data_line');
 const { authMiddleware } = require('./middleware/auth');
 
 //PORT 
@@ -43,6 +46,9 @@ app.use("/",loginRoutes);
 app.use("/",csv_upload);
 app.use("/",quantity_data);
 app.use("/",price_data);
+app.use("/",current_data);
+app.use("/",price_data_pie);
+app.use("/",quantity_data_line);
 
 // auth route for React
 app.get('/verify', authMiddleware, (req, res) => {

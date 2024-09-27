@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
+import cross from '../../assets/svg/utils/cross-close.svg'
 
-export default function Fileup({ visibility }) {
+export default function Fileup({ visibility , uploadHandler}) {
   const [file, setFile] = useState(null);
   const [responseMsg,setResponseMsg] = useState('');
 
@@ -47,8 +48,9 @@ export default function Fileup({ visibility }) {
   };
 
   return (
-    <div className="fileupload-container fixed top-[100px] left-0 right-0 flex justify-center">
-  <div className="p-8 bg-c-grey shadow-2xl rounded-lg w-80">
+    <div className="fileupload-container fixed top-[100px] left-0 right-0 flex justify-center z-99">
+  <div className="p-9 bg-c-grey shadow-2xl rounded-lg w-80 relative">
+      <button onClick={uploadHandler} className='absolute right-3 top-5 '><img src={cross} alt="" className='h-5 invert hover:invert-0'/></button>
     <h1 className="text-2xl font-bold mb-6  text-white text-center">Upload a CSV File</h1>
     <form onSubmit={handleSubmit}>
       <label htmlFor="myfile" className="block text-lg font-semibold text-white mb-3">

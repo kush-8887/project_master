@@ -17,6 +17,8 @@ import Error from './components/utils/Error.jsx'
 import Home from './components/Home.jsx'
 import Forget from './components/login/Forget.jsx';
 import AfterLogin from './components/login/AfterLogin.jsx';
+import DashBoard from './components/dashboard/DashBoard.jsx';
+import MonthlyTotals from './components/dashboard/MonthlyTotals.jsx'
 
 const router = createBrowserRouter([
   {
@@ -53,7 +55,13 @@ const router = createBrowserRouter([
     element : <PassSuccess />
   },{
     path : "/login-success",
-    element : <AfterLogin />
+    element : <DashBoard />
+  },{
+    path : "/dashboard",
+    element : <DashBoard />
+  },{
+    path : "/test",
+    element : <MonthlyTotals />
   }
 ]);
 
