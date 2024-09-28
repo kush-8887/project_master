@@ -6,8 +6,8 @@ export default function monthly_totals() {
   //Year states
   const [yearData, setYearData] = useState([]);
   const [currentYear, setCurrentYear] = useState("");
-  const [lowerYears,setLowerYears] = useState([]);
-  const [currentLowerYear,setCurrentLowerYear] = useState()
+  // const [lowerYears,setLowerYears] = useState([]);
+  // const [currentLowerYear,setCurrentLowerYear] = useState()
 
   //month states
   const [monthData, setMonthData] = useState([]);
@@ -16,11 +16,11 @@ export default function monthly_totals() {
   //Handle year change
   const handleYear = (e) => {
     setCurrentYear(e.target.value);
-    const selectedYear = parseInt(e.target.value, 10);  
-    const filteredYears = yearData.filter(year => parseInt(year, 10) < selectedYear);
-    setLowerYears(filteredYears);
-    setCurrentLowerYear(filteredYears[0]);
-    console.log(filteredYears);
+    // const selectedYear = parseInt(e.target.value, 10);  
+    // const filteredYears = yearData.filter(year => parseInt(year, 10) < selectedYear);
+    // setLowerYears(filteredYears);
+    // setCurrentLowerYear(filteredYears[0]);
+    // console.log(filteredYears);
   };
 
   //handle month change
@@ -30,9 +30,9 @@ export default function monthly_totals() {
 
 
   //Handle lowerYearChange 
-  const handleLowerYearChange = (e)=>{
-    setCurrentLowerYear(e.target.value);
-  }
+  // const handleLowerYearChange = (e)=>{
+  //   setCurrentLowerYear(e.target.value);
+  // }
 
   // Common fetch months method
   const fetchMonths = async (year) => {
@@ -70,10 +70,10 @@ export default function monthly_totals() {
           setCurrentYear(yearsArr[0]);
   
           // Filter and set lowerYears array
-          const selectedYear = parseInt(yearsArr[0], 10); 
-          const filteredYears = yearsArr.filter(year => parseInt(year, 10) < selectedYear);        
-          setLowerYears(filteredYears);
-          setCurrentLowerYear(filteredYears[0]);
+          // const selectedYear = parseInt(yearsArr[0], 10); 
+          // const filteredYears = yearsArr.filter(year => parseInt(year, 10) < selectedYear);        
+          // setLowerYears(filteredYears);
+          // setCurrentLowerYear(filteredYears[0]);
   
           // Fetch months for the first year
           fetchMonths(yearsArr[0]); // Pass the year explicitly
@@ -202,7 +202,15 @@ export default function monthly_totals() {
               <LineGraph link={`http://localhost:8000/getLineGP/month/${currentYear}`} height={"500px"} width={"1110px"}/>
           </div>
         </div>
-        <div className="m-5 bg-c-grey w-[fit-content] rounded-xl p-5 mt-7">
+        <div className="m-5 bg-c-grey w-[fit-content] rounded-xl p-5 mt-[43px]">
+          <div className="w-[100%] flex flex-col justify-between items-center">
+              <div className="sub-heading text-white text-xl">
+                Quantity sold in: {currentYear}
+              </div>
+              <LineGraph link={`http://localhost:8000/getLineGP/quantity/month/${currentYear}`} height={"500px"} width={"1110px"}/>
+          </div>
+        </div>
+        {/* <div className="m-5 bg-c-grey w-[fit-content] rounded-xl p-5 mt-7">
           <div className="w-[100%] flex flex-col justify-between items-center">
               <div className="flex justify-between items-center w-[100%] mx-10">
                 <div className="sub-heading text-white text-xl">
@@ -235,7 +243,7 @@ export default function monthly_totals() {
               </div>
               <LineGraph link={`http://localhost:8000/getLineGP/quantity/year/${currentLowerYear}/${currentYear}`} height={"500px"} width={"1110px"}/>
           </div>
-        </div>
+        </div> */}
       </section>
     </div>
   );

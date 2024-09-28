@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { ResponsivePie } from "@nivo/pie";
+import loading from '../../assets/imgs/utils/loading-waiting.gif'
 
 export default function PieChart({ link, height, width }) {
   const [data, setData] = useState([]);
@@ -23,7 +24,7 @@ export default function PieChart({ link, height, width }) {
   }, [link]);
 
   return (
-    <div style={{ height: height, width: width }}>
+    <div style={{ height: height, width: width }} className="flex items-center justify-center">
       {data.length > 0 ? (
         <ResponsivePie
           data={data}
@@ -115,7 +116,7 @@ export default function PieChart({ link, height, width }) {
           }}
         />
       ) : (
-        <p>Loading...</p>
+        <img className="h-[50px]" src={loading} alt="loading" />
       )}
     </div>
   );

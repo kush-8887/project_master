@@ -18,7 +18,7 @@ router.get("/getLineGP/quantity/month/:year",async(req,res)=>{
     let year = req.params.year;
     let userId = await getUserId(req);
 
-    let data = await get_line_quarter_price(year,userId);
+    let data = await get_line_month_price(year,userId);
 
     res.json(data);
 });
@@ -27,7 +27,7 @@ router.get("/getLineGP/quantity/quarter/:year",async(req,res)=>{
     let year = req.params.year;
     let userId = await getUserId(req);
 
-    let data = await get_line_month_price(year,userId);
+    let data = await get_line_quarter_price(year,userId);
 
     res.json(data);
 })

@@ -19,6 +19,7 @@ import Forget from './components/login/Forget.jsx';
 import AfterLogin from './components/login/AfterLogin.jsx';
 import DashBoard from './components/dashboard/DashBoard.jsx';
 import MonthlyTotals from './components/dashboard/MonthlyTotals.jsx'
+import YearlyTotals from './components/dashboard/YearlyTotals.jsx'
 
 const router = createBrowserRouter([
   {
@@ -61,7 +62,7 @@ const router = createBrowserRouter([
     element : <DashBoard />
   },{
     path : "/test",
-    element : <MonthlyTotals />
+    element : <YearlyTotals />
   }
 ]);
 

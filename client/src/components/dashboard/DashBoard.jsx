@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState , useRef } from 'react';
 import DashNav from './DashNav';
 import DashNav2 from './DashNav2';
 import Fileup from './Fileup';
@@ -9,10 +9,28 @@ import YearlyTotals from '../dashboard/YearlyTotals';
 export default function DashBoard() {
   const [fileVisibility, setFileVisibility] = useState(false);
   const [CurrentSection, setCurrentSection] = useState(() => MonthlyTotals); 
+  const mainContainerRef = useRef(null);
 
   const uploadHandler = () => {
     setFileVisibility(!fileVisibility);
+    const mainContainer = mainContainerRef.current;
+  
+    // Check if the mainContainer exists
+    if (mainContainer) {
+      // Get the current className
+      let containerClass = mainContainer.className;
+  
+      // Modify the className on the DOM element directly
+      if (containerClass === "flex flex-row w-[98.9vw] h-[fit-content]") {
+        mainContainer.className = "flex flex-row w-[98.9vw] h-[fit-content] z-[-1] relative";
+      } else {
+        mainContainer.className = "flex flex-row w-[98.9vw] h-[fit-content]";
+      }
+  
+      console.log(mainContainer.className); // Log the updated className
+    }
   };
+  
 
   const handleSection = (section) => {
     const current_id = section.target.id; 
@@ -29,7 +47,7 @@ export default function DashBoard() {
   return (
     <>
       <Fileup visibility={fileVisibility} uploadHandler={uploadHandler} />
-      <div className='flex flex-row w-[98.9vw] h-[fit-content]'>
+      <div ref={mainContainerRef} className='flex flex-row w-[98.9vw] h-[fit-content]'>
         <DashNav handleSection={handleSection} />
         <div className="cont-2 w-[80vw] bg-b-grey ">
           <DashNav2 uploadHandler={uploadHandler} />

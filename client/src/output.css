@@ -632,10 +632,6 @@ video {
   top: 1.25rem;
 }
 
-.top-\[100px\] {
-  top: 100px;
-}
-
 .top-\[270px\] {
   top: 270px;
 }
@@ -646,6 +642,10 @@ video {
 
 .top-\[8px\] {
   top: 8px;
+}
+
+.z-\[-1\] {
+  z-index: -1;
 }
 
 .m-5 {
@@ -731,6 +731,10 @@ video {
   margin-top: 1.75rem;
 }
 
+.mt-\[43px\] {
+  margin-top: 43px;
+}
+
 .mt-\[50px\] {
   margin-top: 50px;
 }
@@ -795,8 +799,16 @@ video {
   height: 300px;
 }
 
+.h-\[30rem\] {
+  height: 30rem;
+}
+
 .h-\[390px\] {
   height: 390px;
+}
+
+.h-\[50px\] {
+  height: 50px;
 }
 
 .h-\[77\%\] {
@@ -816,12 +828,12 @@ video {
   height: auto;
 }
 
-.min-h-screen {
-  min-height: 100vh;
+.h-\[20rem\] {
+  height: 20rem;
 }
 
-.w-80 {
-  width: 20rem;
+.min-h-screen {
+  min-height: 100vh;
 }
 
 .w-\[100\%\] {
@@ -830,6 +842,10 @@ video {
 
 .w-\[100px\] {
   width: 100px;
+}
+
+.w-\[100vw\] {
+  width: 100vw;
 }
 
 .w-\[200px\] {
@@ -854,6 +870,10 @@ video {
 
 .w-\[400px\] {
   width: 400px;
+}
+
+.w-\[40rem\] {
+  width: 40rem;
 }
 
 .w-\[50\%\] {
@@ -887,6 +907,10 @@ video {
 
 .w-full {
   width: 100%;
+}
+
+.w-\[30rem\] {
+  width: 30rem;
 }
 
 .max-w-full {
@@ -1160,6 +1184,12 @@ video {
   filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
 }
 
+.backdrop-blur-sm {
+  --tw-backdrop-blur: blur(4px);
+  -webkit-backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);
+  backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);
+}
+
 .backdrop-blur-xl {
   --tw-backdrop-blur: blur(24px);
   -webkit-backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);
@@ -1205,9 +1235,8 @@ video {
   border-color: rgb(166 171 255 / var(--tw-border-opacity));
 }
 
-.hover\:bg-b-grey:hover {
-  --tw-bg-opacity: 1;
-  background-color: rgb(36 37 41 / var(--tw-bg-opacity));
+.hover\:bg-purple-hover:hover {
+  background-color: rgb(166 171 255 / 56%);
 }
 
 .hover\:bg-selected-purple:hover {
