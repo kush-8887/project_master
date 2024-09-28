@@ -48,8 +48,8 @@ export default function Fileup({ visibility , uploadHandler}) {
   };
 
   return (
-    <div className="fileupload-container fixed top-[100px] left-0 right-0 flex justify-center z-99">
-  <div className="p-9 bg-c-grey shadow-2xl rounded-lg w-80 relative">
+    <div className="fileupload-container fixed left-0 right-0 flex justify-center items-center z-999999 h-[100vh] w-[100vw] backdrop-blur-sm ">
+  <div className="p-9 bg-c-grey shadow-2xl rounded-lg w-[30rem] h-[20rem] relative z-999999 flex flex-col justify-center items-center">
       <button onClick={uploadHandler} className='absolute right-3 top-5 '><img src={cross} alt="" className='h-5 invert hover:invert-0'/></button>
     <h1 className="text-2xl font-bold mb-6  text-white text-center">Upload a CSV File</h1>
     <form onSubmit={handleSubmit}>

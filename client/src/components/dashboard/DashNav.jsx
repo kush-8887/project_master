@@ -13,7 +13,9 @@ export default function DashNav({ handleSection }) {
   return (
     <nav className="bg-b-grey w-[20vw] h-[260vh] flex flex-col">
       <div className="w-[100%] flex justify-center">
+        <a href="/">
         <img src={logo} alt="" className="p-4 w-[200px]" />
+        </a>
       </div>
       <div className="px-5">
         <div className="current-analytics">
@@ -26,8 +28,8 @@ export default function DashNav({ handleSection }) {
                 onClick={handleClick}
                 className={`my-3 item py-3 px-2 rounded-md cursor-pointer ${
                   activeItemId === "monthly_totals"
-                    ? "text-black bg-selected-purple hover:bg-b-grey hover:text-white"
-                    : "text-white bg-b-grey hover:bg-selected-purple hover:text-black"
+                    ? "text-black bg-selected-purple hover:bg-purple-hover hover:text-white transition-colors"
+                    : "text-white bg-b-grey hover:bg-purple-hover hover:text-black transition-colors"
                 }`}
               >
                 Monthly Total
@@ -37,8 +39,8 @@ export default function DashNav({ handleSection }) {
                 onClick={handleClick}
                 className={`my-3 item py-3 px-2 rounded-md cursor-pointer ${
                   activeItemId === "quarterly_totals"
-                    ? "text-black bg-selected-purple hover:bg-b-grey hover:text-white"
-                    : "text-white bg-b-grey hover:bg-selected-purple hover:text-black"
+                    ? "text-black bg-selected-purple hover:bg-purple-hover hover:text-white transition-colors"
+                    : "text-white bg-b-grey hover:bg-purple-hover hover:text-black transition-colors" 
                 }`}
               >
                 Quarterly Total
@@ -48,8 +50,8 @@ export default function DashNav({ handleSection }) {
                 onClick={handleClick}
                 className={`my-3 item py-3 px-2 rounded-md cursor-pointer ${
                   activeItemId === "yearly_totals"
-                    ? "text-black bg-selected-purple hover:bg-b-grey hover:text-white"
-                    : "text-white bg-b-grey hover:bg-selected-purple hover:text-black"
+                    ? "text-black bg-selected-purple hover:bg-purple-hover hover:text-white transition-colors"
+                    : "text-white bg-b-grey hover:bg-purple-hover hover:text-black transition-colors" 
                 }`}
               >
                 Yearly Total
