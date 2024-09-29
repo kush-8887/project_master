@@ -1,4 +1,5 @@
 function get_err(errorCode){      
+    // console.log(errorCode)
     const error_msgs = {
         "C01" : "Invalid column names. ERROR CODE: C01",
         "C02" : "Error in modifying the CSV. ERROR CODE: C02",
