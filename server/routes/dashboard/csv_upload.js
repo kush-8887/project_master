@@ -75,6 +75,7 @@ router.post("/upload-csv", authMiddleware, upload.single("myfile"), async (req, 
 
       // When the Python process finishes
       pythonProcess.on("close", async (code) => {
+          console.log(scriptOutput)
           if (code === 0) {
               if (!res.headersSent) {
                   if(scriptOutput.trim() === "File processed successfully"){
