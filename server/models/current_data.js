@@ -16,6 +16,10 @@ const currentDataSchema = new mongoose.Schema({
   years: {
     type: [String],
     required: true
+  },
+  items :{
+      type : [String],
+      required : true
   }
 }, {
   collection: 'time_data'

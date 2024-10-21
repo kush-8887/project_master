@@ -5,6 +5,8 @@ import Fileup from './Fileup';
 import MonthlyTotals from '../dashboard/MonthlyTotals';
 import QuarterlyTotals from '../dashboard/QuarterlyTotals';
 import YearlyTotals from '../dashboard/YearlyTotals';
+import PredictionPrice from './PredictionPrice';
+import PredictionQuantity from './PredictionQuantity';
 
 export default function DashBoard() {
   const [fileVisibility, setFileVisibility] = useState(false);
@@ -42,6 +44,12 @@ export default function DashBoard() {
     }
     if(current_id === "yearly_totals"){
       setCurrentSection(() => YearlyTotals); 
+    }
+    if(current_id === "price_prediction"){
+      setCurrentSection(() => PredictionPrice);
+    }
+    if(current_id === "quantity_prediction"){
+      setCurrentSection(()=> PredictionQuantity);
     }
   };
   return (

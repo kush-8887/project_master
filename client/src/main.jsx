@@ -16,10 +16,12 @@ import Reset from './components/login/Reset.jsx';
 import Error from './components/utils/Error.jsx'
 import Home from './components/Home.jsx'
 import Forget from './components/login/Forget.jsx';
-import AfterLogin from './components/login/AfterLogin.jsx';
+// import AfterLogin from './components/login/AfterLogin.jsx';
 import DashBoard from './components/dashboard/DashBoard.jsx';
-import MonthlyTotals from './components/dashboard/MonthlyTotals.jsx'
-import YearlyTotals from './components/dashboard/YearlyTotals.jsx'
+// import MonthlyTotals from './components/dashboard/MonthlyTotals.jsx'
+// import YearlyTotals from './components/dashboard/YearlyTotals.jsx'
+import PredictionPrice from './components/dashboard/PredictionPrice.jsx';
+import HowTo from './components/HowTo.jsx';
 
 const router = createBrowserRouter([
   {
@@ -62,7 +64,10 @@ const router = createBrowserRouter([
     element : <DashBoard />
   },{
     path : "/test",
-    element : <YearlyTotals />
+    element : <PredictionPrice />
+  },{
+    path : '/how-to',
+    element : <HowTo />
   }
 ]);
 

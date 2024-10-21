@@ -13,7 +13,7 @@ export default function Home() {
       strings: ["PREDICTIONS", "ANALYTICS", "INVENTORY MANAGEMENT"],
       typeSpeed: 50,
       backSpeed: 50,
-      loop: true, 
+      loop: true,
       showCursor: false, // Added loop for continuous typing effect
     };
 
@@ -29,18 +29,18 @@ export default function Home() {
   }, []);
 
   return (
-    <>
+    <div className="bg-b-grey">
       <Navbar />
       <div className="flex flex-row font-popins">
         <div className="left w-[60%] bg-b-grey h-[88vh]">
           <div className="flex flex-col main relative backdrop-blur-xl h-[100%] text-5xl leading-[4.5rem] text-white uppercase items-center justify-center mx-10">
-            <div className="ml-[-190px]">Unlocking Sales Potential <br /> with Data-Driven Insights <br />GET</div>
+            <div className="ml-[-190px]">
+              Unlocking Sales Potential <br /> with Data-Driven Insights <br />
+              GET
+            </div>
             <div className="features w-[100%] text-selected-purple" ref={e1}>
               {/* Typing effect appears here */}
-            </div>
-            {/* <button className="leading-1 h-2 bg-c-grey text-[20px] text-white px-2 py-2 rounded-lg font-bold transition-colors hover:bg-selected-purple hover:text-black">
-              Submit
-            </button> */}
+            </div>            
           </div>
         </div>
         <div className="right w-[40%] bg-b-grey h-[88vh] backdrop-blur-xl relative">
@@ -57,6 +57,7 @@ export default function Home() {
           </div>
         </div>
       </div>
-    </>
+      
+    </div>
   );
 }

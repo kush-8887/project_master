@@ -6,12 +6,14 @@ export default function DashNav({ handleSection }) {
 
   const handleClick = (e) => {
     const { id } = e.target;
-    setActiveItemId(id); // Set the clicked item's id as active
-    handleSection(e); // Trigger the section change handler
+    setActiveItemId(id); 
+    console.log(activeItemId);
+    
+    handleSection(e); 
   };
 
   return (
-    <nav className="bg-b-grey w-[20vw] h-[260vh] flex flex-col">
+    <nav className="bg-b-grey w-[20vw] h-[265vh] flex flex-col">
       <div className="w-[100%] flex justify-center">
         <a href="/">
         <img src={logo} alt="" className="p-4 w-[200px]" />
@@ -61,6 +63,32 @@ export default function DashNav({ handleSection }) {
         </div>
         <div className="prediction-analytics">
           <div className="text-white text-2xl">Prediction Analytics</div>
+          <div className="option-holder flex flex-col">
+          <div
+                id="price_prediction"
+                onClick={handleClick}
+                className={`my-3 item py-3 px-2 rounded-md cursor-pointer ${
+                  activeItemId === "price_prediction"
+                    ? "text-black bg-selected-purple hover:bg-purple-hover hover:text-white transition-colors"
+                    : "text-white bg-b-grey hover:bg-purple-hover hover:text-black transition-colors" 
+                }`}
+              >
+                Price Prediction
+              </div>
+          </div>
+          <div className="option-holder flex flex-col">
+          <div
+                id="quantity_prediction"
+                onClick={handleClick}
+                className={`my-2 item py-3 px-2 rounded-md cursor-pointer ${
+                  activeItemId === "quantity_prediction"
+                    ? "text-black bg-selected-purple hover:bg-purple-hover hover:text-white transition-colors"
+                    : "text-white bg-b-grey hover:bg-purple-hover hover:text-black transition-colors" 
+                }`}
+              >
+                Quantity Prediction
+              </div>
+          </div>
         </div>
       </div>
     </nav>
