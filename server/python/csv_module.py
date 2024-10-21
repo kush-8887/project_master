@@ -114,17 +114,19 @@ class csv_module:
             db['quarterly_totals'].insert_many(quarterly_totals.to_dict(orient='records'))
             db['yearly_totals'].insert_many(yearly_totals.to_dict(orient='records'))
 
-            # Extract unique values for months, quarters, and years
+            # Extract unique values for months, quarters, years, and item_name
             unique_months = df['month'].unique().tolist()
             unique_quarters = df['quarter'].unique().tolist()
             unique_years = df['year'].unique().tolist()
+            unique_items = df['item_name'].unique().tolist()  # Extract unique item names
 
             # Create a dictionary for user-specific unique values
             user_data = {
                 "userId": self.userId,
                 "months": unique_months,
                 "quarters": unique_quarters,
-                "years": unique_years
+                "years": unique_years,
+                "items": unique_items  # Store unique item names
             }
 
             # Store the unique values in MongoDB in a separate collection
@@ -135,4 +137,5 @@ class csv_module:
 
             return "Data successfully formatted and uploaded to MongoDB"
         except Exception as e:
-            return "C03"
+            return f"Error: {str(e)}"
+

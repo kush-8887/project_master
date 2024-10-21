@@ -17,6 +17,7 @@ const price_data = require('./routes/dashboard/price_data');
 const current_data = require('./routes/dashboard/current_data');
 const price_data_pie = require('./routes/dashboard/price_data_pie');
 const quantity_data_line = require('./routes/dashboard/quantity_data_line');
+const get_predictions = require('./routes/dashboard/price_prediction');
 const { authMiddleware } = require('./middleware/auth');
 
 //PORT 
@@ -49,6 +50,7 @@ app.use("/",price_data);
 app.use("/",current_data);
 app.use("/",price_data_pie);
 app.use("/",quantity_data_line);
+app.use("/",get_predictions);
 
 // auth route for React
 app.get('/verify', authMiddleware, (req, res) => {

@@ -41,9 +41,15 @@ export default function DashNav2({ uploadHandler }) {
         Welcome, {profileName || "Guest"} {/* Show "Guest" if profileName is empty */}
       </div>
       <div className="upload-csv-container mr-5">
+        <a
+          className="p-2 rounded-md text-white bg-black hover:bg-selected-purple transition-colors"
+          href="/how-to"
+        >
+          How to upload?
+        </a>
         <button
           onClick={uploadHandler}
-          className="p-2 rounded-md text-white bg-black hover:bg-selected-purple transition-colors"
+          className="p-2 rounded-md text-white bg-black hover:bg-selected-purple transition-colors ml-5"
         >
           Upload CSV
         </button>
